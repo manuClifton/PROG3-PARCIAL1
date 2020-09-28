@@ -115,7 +115,7 @@ require_once './clases/fileManager.php';
         }
 
         public static function devolverUsuario($email){
-            $retorno = false;
+            $retorno = null;
             $emailList = Usuario::leerJson("usuarios.json");
             //var_dump($asignacionList);
             //die();
@@ -127,8 +127,8 @@ require_once './clases/fileManager.php';
 
                if( $emailList[$i]->_email == $email ){
                     $retorno = new Usuario($emailList[$i]->_email, $emailList[$i]->_tipo, $emailList[$i]->_password);
-                    var_dump($retorno);
-                    die();
+                    //var_dump($retorno);
+                    //die();
                 break;
                 }
             }

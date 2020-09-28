@@ -15,15 +15,26 @@ use \Firebase\JWT\JWT;
 
       public static function leerToken($token)
       {
-         $Key = "example_key";
+         $Key = "primerparcial";
          try {
             $decode = JWT::decode($token,$Key,array('HS256'));
             return true;
          } catch (Throwable $th) {
             return false;
          }
-
       }
+
+      public static function leerPayload($token)
+      {
+         $Key = "primerparcial";
+         try {
+            $decode = JWT::decode($token,$Key,array('HS256'));
+            return $decode;
+         } catch (Throwable $th) {
+            return [];
+         }
+      }
+
    
    }//
 ?>
