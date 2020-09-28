@@ -1,0 +1,16 @@
+[
+    {
+        "patente": "aaa123",
+        "fecha_ingreso": "29\/09\/20 01:45",
+        "tipo": "mensual",
+        "_filename": null,
+        "filename": "autos.json"
+    },
+    {
+        "patente": "aaa123",
+        "fecha_ingreso": "29\/09\/20 01:46",
+        "tipo": "mensual",
+        "_filename": null,
+        "filename": "autos.json"
+    }
+]

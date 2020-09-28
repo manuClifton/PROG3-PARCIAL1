@@ -4,6 +4,7 @@ require './clases/authToken.php';
 require './clases/resultado.php';
 require './clases/usuario.php';
 require './clases/precio.php';
+require './clases/ingreso.php';
 
 require __DIR__.'/vendor/autoload.php';
 require_once('./clases/authToken.php');
@@ -78,6 +79,7 @@ switch($method){
                     $estado = false;
                     $msg = "ERROR DE AUTENTICACION";
                 }else{
+
                    if($path == '/precio'){
                         if( isset($_POST['precio_hora']) && isset($_POST['precio_estadia']) && isset($_POST['precio_mensual'])  ){
 
@@ -108,6 +110,42 @@ switch($method){
                             $msg = "FALTAN DATOS DEL PRECIO";
                         }
                     }
+
+                    if($path == '/ingreso'){
+                        if( isset($_POST['patente']) && isset($_POST['tipo']) ){
+
+                            if(Ingreso::validarTipo($_POST['tipo'])){
+                                $decode =  JsonWT::leerPayload($_SERVER['HTTP_TOKEN']);
+
+                                if($decode->tipo == 'user'){
+                                    $ingreso = new Ingreso($_POST['patente'],date('d/m/y H:i'), $_POST['tipo']);
+                                    //var_dump($precio);
+                                    //die();
+                                    if($ingreso->SaveIngresoJson()){
+                                        //echo "La materia se guardo correctamente";
+                                        $estado = true;
+                                        $msg = "El ingreso se guardo correctamente";
+                                    }
+                                    else{
+                                    // echo "Ocurrio un error al guardar la Materia";
+                                        $estado = false;
+                                        $msg = "Ocurrio un error al guardar ingreso";
+                                    }
+                                }else{
+                                    $estado = false;
+                                    $msg = "NO ES USER";
+                                }
+                            }else{
+                                $estado = false;
+                                $msg = "TIPO INCORRECTO";
+                            }
+                        }
+                        else{
+                            $estado = false;
+                            $msg = "FALTAN DATOS INGRESO";
+                        }
+                    }
+
                 }
             }
 
