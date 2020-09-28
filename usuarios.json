@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "1",
+        "_email": "admin@mail.com",
+        "_tipo": "admin",
+        "_password": "123",
+        "_filename": null,
+        "filename": "usuarios.json"
+    },
+    {
+        "_id": "2",
+        "_email": "user@mail.com",
+        "_tipo": "user",
+        "_password": "123",
+        "_filename": null,
+        "filename": "usuarios.json"
+    },
+    {
+        "_id": "3",
+        "_email": "PEPE@mail.com",
+        "_tipo": "user",
+        "_password": "123",
+        "_filename": null,
+        "filename": "usuarios.json"
+    }
+]
