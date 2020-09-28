@@ -154,7 +154,21 @@ switch($method){
     break;
 
     case'GET':
-        echo "toavia no lo hice";
+        if($path == '/retiro' || $path == '/ingreso'){
+            if(!JsonWT::leerToken($_SERVER['HTTP_TOKEN'])){
+                $estado = false;
+                $msg = "ERROR DE AUTENTICACION";
+            }else{
+                if($path == '/ingreso'){
+                    //echo "mostrar MATERIA";
+                    $estado = true;
+                    $msg = Ingreso::leerJson("autos.json");
+                }else{
+                    $estado = false;
+                    $msg = "NO SE PUDO LEER";
+                }
+            }
+        }
     break;
 
     default:
