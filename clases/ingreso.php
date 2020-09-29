@@ -53,7 +53,26 @@ require_once './clases/fileManager.php';
             return $retorno;
         }
 
+        public static function devolverIngreso($patente){
+            $retorno = null;
+            $list = Ingreso::leerJson("autos.json");
+            //var_dump($asignacionList);
+            //die();
+            if(count($list) == 0){
+                return $retorno;
+            }
 
+            for ($i=0; $i < count($list); $i++) {
+
+               if( $list[$i]->patente == $patente ){
+                    $retorno = new Ingreso($list[$i]->patente, $list[$i]->fecha_ingreso, $list[$i]->tipo);
+                    //var_dump($retorno);
+                    //die();
+                break;
+                }
+            }
+            return $retorno;
+        }
 
         
     }//

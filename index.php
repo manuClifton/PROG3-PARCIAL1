@@ -159,6 +159,30 @@ switch($method){
                 $estado = false;
                 $msg = "ERROR DE AUTENTICACION";
             }else{
+
+                if($path == '/retiro'){
+                    $decode =  JsonWT::leerPayload($_SERVER['HTTP_TOKEN']);
+
+                            if($decode->tipo == 'user'){
+                                $precio = new Precio($_POST['precio_hora'],$_POST['precio_estadia'],$_POST['precio_mensual']);
+                                //var_dump($precio);
+                                //die();
+                                if($precio->SavePrecioJson()){
+                                    //echo "La materia se guardo correctamente";
+                                    $estado = true;
+                                    $msg = "La materia se guardo correctamente";
+                                }
+                                else{
+                                // echo "Ocurrio un error al guardar la Materia";
+                                    $estado = false;
+                                    $msg = "Ocurrio un error al guardar la Materia";
+                                }
+                            }else{
+                                $estado = false;
+                                $msg = "NO ES ADMIN";
+                            }
+                }
+
                 if($path == '/ingreso'){
                     //echo "mostrar MATERIA";
                     $estado = true;
